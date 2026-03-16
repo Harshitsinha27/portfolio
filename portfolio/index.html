@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshit Sinha | Portfolio</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- AOS Animation CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        /* --- GLOBAL STYLES --- */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #e2e8f0; /* Slate 200 */
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* --- UNIQUE BACKGROUND ANIMATION --- */
+        .bg-mesh {
+            background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #0f172a 100%);
+            position: relative;
+        }
+        
+        .bg-mesh::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes blob {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .animate-blob {
+            animation: blob 10s infinite ease-in-out;
+        }
+
+        .animate-blob-delayed {
+            animation: blob 10s infinite ease-in-out 2s;
+        }
+
+        /* --- GLASSMORPHISM CARDS --- */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(99, 102, 241, 0.5); /* Indigo glow */
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.3);
+        }
+
+        /* --- IMAGE STYLES --- */
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .college-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .cert-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .cert-img:hover {
+            opacity: 1;
+        }
+
+        /* --- TEXT SIZING --- */
+        .text-lg { font-size: 1.125rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .text-5xl { font-size: 3rem; }
+    </style>
+</head>
+
+<body class="antialiased bg-mesh">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 right-0 bg-slate-900/80 backdrop-blur-md border-b border-white/10 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="font-bold text-2xl text-indigo-400 tracking-wider">HARSHIT SINHA</div>
+      <nav class="space-x-6 hidden md:flex text-sm font-medium">
+        <a href="#about" class="hover:text-indigo-400 transition-colors">About</a>
+        <a href="#education" class="hover:text-indigo-400 transition-colors">Education</a>
+        <a href="#skills" class="hover:text-indigo-400 transition-colors">Skills</a>
+        <a href="#certifications" class="hover:text-indigo-400 transition-colors">Certifications</a>
+        <a href="#projects" class="hover:text-indigo-400 transition-colors">Projects</a>
+        <a href="#contact" class="hover:text-indigo-400 transition-colors">Contact</a>
+      </nav>
+      <!-- Mobile Menu Button (Placeholder) -->
+      <button class="md:hidden text-white text-xl">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="pt-32 pb-20 min-h-screen flex items-center justify-center relative overflow-hidden">
+    <!-- Animated Background Blobs -->
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+      <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+      <div class="absolute top-0 right-1/4 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animate-blob-delayed"></div>
+      <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div data-aos="fade-right" data-aos-duration="1000">
+        <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-indigo-300 uppercase bg-indigo-900/50 rounded-full border border-indigo-500/30">
+          Available for Hire
+        </div>
+        <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+          Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Harshit Sinha</span>
+        </h1>
+        <p class="text-2xl text-slate-300 mb-6 font-light">
+          Data Science | Python & Java Developer | Aspiring Machine Learning
+        </p>
+        <p class="text-lg text-slate-400 mb-8 max-w-lg">
+            Computer Science undergraduate at Lovely Professional University passionate about Data Science and Machine Learning, focused on building data-driven solutions using Python, Java, and analytics tools.        </p>
+        
+        <div class="flex flex-wrap gap-4 mb-8">
+          <a href="https://drive.google.com/file/d/1Uh1tn1qF_-WjIoHVCU8CSPWabNhL0vxr/view?usp=sharing"
+             target="_blank"
+             class="px-8 py-3 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-500/30">
+            <i class="fas fa-download mr-2"></i> Download CV
+          </a>
+        </div>
+
+        <div class="flex gap-6 text-lg">
+          <a href="https://www.linkedin.com/in/harshit-sinha-3027b0290/" class="text-slate-300 hover:text-white transition-colors"><i class="fab fa-linkedin text-2xl"></i></a>
+          <a href="https://github.com/Harshitsinha27" class="text-slate-300 hover:text-white transition-colors"><i class="fab fa-github text-2xl"></i></a>
+          <a href="mailto:harshitsinha2709@gmail.com" class="text-slate-300 hover:text-white transition-colors"><i class="fas fa-envelope text-2xl"></i></a>
+        </div>
+      </div>
+
+      <div class="flex justify-center relative" data-aos="fade-left" data-aos-duration="1000">
+        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-full blur-2xl opacity-30 animate-pulse"></div>
+        <div class="w-80 h-80 rounded-full overflow-hidden border-4 border-slate-700 shadow-2xl relative z-10">
+          <!-- Replace with your actual photo path -->
+          <img src="images/profile.png" alt="Harshit Sinha" class="profile-img" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" class="py-20 bg-slate-900/50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="glass-card p-10 rounded-2xl" data-aos="fade-up">
+        <h2 class="text-4xl font-bold mb-8 text-indigo-400 border-l-4 border-indigo-500 pl-4">About Me</h2>
+        <div class="space-y-6 text-lg text-slate-300 leading-relaxed">
+          <p>
+            Hi, I'm <strong class="text-white">Harshit Sinha</strong>, a Computer Science undergraduate at 
+            <strong class="text-indigo-400">Lovely Professional University (2023–2027)</strong> with a strong interest in 
+            <strong class="text-white">Data Science, Machine Learning, and Software Development</strong>.
+          </p>
+          <p>
+            I enjoy working with <strong class="text-white">Python, Java, and data analytics tools</strong> to transform 
+            raw data into meaningful insights and build practical solutions. My experience includes 
+            developing data-driven dashboards, implementing data analysis techniques, and building 
+            applications using object-oriented programming.
+          </p>
+          <p>
+            Some of my key projects include a <strong class="text-white">Power BI Used Car Market Analytics Dashboard (AutoVision)</strong>, 
+            a <strong class="text-white">UAE Auto Market Sales Dashboard</strong>, and a <strong class="text-white">UIDAI Hackathon data analysis project</strong>, 
+            where I applied data processing, visualization, and analytical techniques to extract valuable insights.
+          </p>
+          <p>
+            I am passionate about continuous learning and problem-solving, and I am currently strengthening 
+            my knowledge in <strong class="text-white">Data Structures, Data Analytics, and Machine Learning</strong>
+            and exploring opportunities to apply my skills in real-world projects.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION SECTION -->
+  <section id="education" class="py-20 bg-slate-800/30">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold mb-10 text-center text-white" data-aos="fade-up">Education</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- Card 1 -->
+        <div class="glass-card p-8 rounded-xl text-center" data-aos="fade-up" data-aos-delay="100">
+          <img src="images/lpu.png" alt="LPU Campus" class="college-img" />
+          <h3 class="text-xl font-bold text-white mb-2">B.Tech CSE</h3>
+          <p class="text-indigo-400 font-medium mb-2">Lovely Professional University</p>
+          <p class="text-slate-400 text-sm">2023 – 2027</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="glass-card p-8 rounded-xl text-center" data-aos="fade-up" data-aos-delay="200">
+          <img src="images/kps.png" alt="KPS Campus" class="college-img" />
+          <h3 class="text-xl font-bold text-white mb-2">Higher Secondary</h3>
+          <p class="text-purple-400 font-medium mb-2">Krishna Public School</p>
+          <p class="text-slate-400 text-sm">2022 – 2023</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="glass-card p-8 rounded-xl text-center" data-aos="fade-up" data-aos-delay="300">
+          <img src="images/dav.png" alt="DAV Campus" class="college-img" />
+          <h3 class="text-xl font-bold text-white mb-2">Secondary School</h3>
+          <p class="text-pink-400 font-medium mb-2">DAV Public School</p>
+          <p class="text-slate-400 text-sm">2020-2021</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section id="skills" class="py-20 bg-slate-900/50">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold mb-12 text-center text-white" data-aos="fade-up">Technical Skills</h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Programming -->
+        <div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-code text-3xl text-indigo-400 mr-4"></i>
+            <h3 class="text-2xl font-bold text-white">Programming</h3>
+          </div>
+          <ul class="space-y-2 text-lg text-slate-300">
+            <li><i class="fas fa-check text-green-400 mr-2"></i>Python</li>
+            <li><i class="fas fa-check text-green-400 mr-2"></i>Java</li>
+            <li><i class="fas fa-check text-green-400 mr-2"></i>C++</li>
+            <li><i class="fas fa-check text-green-400 mr-2"></i>HTML & CSS</li>
+          </ul>
+        </div>
+
+                <!-- Data Tools -->
+        <div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-database text-3xl text-purple-400 mr-4"></i>
+            <h3 class="text-2xl font-bold text-white">Data Tools</h3>
+          </div>
+          <ul class="space-y-2 text-lg text-slate-300">
+            <li><i class="fas fa-check text-green-400 mr-2"></i>NumPy & Pandas</li>
+            <li><i class="fas fa-check text-green-400 mr-2"></i>Matplotlib & Seaborn</li>
+            <li><i class="fas fa-check text-green-400 mr-2"></i>Excel</li>
+            <li><i class="fas fa-check text-green-400 mr-2"></i>Power BI</li>
+            <li><i class="fas fa-check text-green-400 mr-2"></i>SQL</li>
+          </ul>
+        </div>
+
+        <!-- Development -->
+        <div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="300">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-laptop-code text-3xl text-pink-400 mr-4"></i>
+            <h3 class="text-2xl font-bold text-white">Development</h3>
+          </div>
+          <ul class="space-y-2 text-lg text-slate-300">
+            <li><i class="fas fa-check text-green-400 mr-2"></i>Git & GitHub</li>
+            <li><i class="fas fa-check text-green-400 mr-2"></i>Object-Oriented Programming</li>
+            <li><i class="fas fa-check text-green-400 mr-2"></i>Data Visualization</li>
+            <li><i class="fas fa-check text-green-400 mr-2"></i>Problem Solving</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS SECTION -->
+  <section id="certifications" class="py-20 bg-slate-800/30" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold mb-12 text-center text-white" data-aos="fade-up">Certifications</h2>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Certificate 1 -->
+        <div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+          <img src="images/chipher school.png" alt="DSA Certificate" class="cert-img" />
+          <div class="flex items-center mb-4">
+            <i class="fas fa-code text-2xl text-indigo-400 mr-3"></i>
+            <h3 class="text-xl font-bold text-white">Data Structures & Algorithms</h3>
+          </div>
+          <p class="text-indigo-400 font-medium mb-2">Cipher Schools</p>
+          <p class="text-lg text-slate-300">
+            Learned core DSA concepts using Java including arrays, linked lists, stacks, queues, trees, and sorting algorithms.
+          </p>
+        </div>
+
+        <!-- Certificate 2 -->
+        <div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="200">
+          <img src="images/Data Analytics Job Simulation.png" alt="Deloitte Certificate" class="cert-img" />
+          <div class="flex items-center mb-4">
+            <i class="fas fa-chart-line text-2xl text-purple-400 mr-3"></i>
+            <h3 class="text-xl font-bold text-white">Data Analytics Job Simulation</h3>
+          </div>
+          <p class="text-purple-400 font-medium mb-2">Deloitte</p>
+          <p class="text-lg text-slate-300">
+            Completed practical analytics tasks including data cleaning, visualization, and insight generation.
+          </p>
+        </div>
+
+        <!-- Certificate 4 -->
+        <div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="400">
+          <img src="images/Social Network.png" alt="NPTEL Certificate" class="cert-img" />
+          <div class="flex items-center mb-4">
+            <i class="fas fa-network-wired text-2xl text-green-400 mr-3"></i>
+            <h3 class="text-xl font-bold text-white">Social Network Analysis</h3>
+          </div>
+          <p class="text-green-400 font-medium mb-2">NPTEL</p>
+          <p class="text-lg text-slate-300">
+            Studied network structures, graph theory concepts, and real-world applications of social networks.
+          </p>
+        </div>
+
+ <!-- Certificate 5 -->
+<div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="500">
+  <img src="images/Master Generative AI & AI Tools (ChatGPT, Prompt Engineering).png" alt="Generative AI Certificate" class="cert-img" />
+
+  <div class="flex items-center mb-4">
+    <i class="fas fa-robot text-2xl text-green-400 mr-3"></i>
+    <h3 class="text-xl font-bold text-white">Master Generative AI</h3>
+  </div>
+
+  <p class="text-green-400 font-medium mb-2">Udemy</p>
+
+  <p class="text-lg text-slate-300">
+    Learned the fundamentals of Generative AI and explored popular AI tools including 
+    ChatGPT and other AI platforms for productivity, automation, and content creation.
+  </p>
+</div>
+
+        <!-- Certificate 6 -->
+        <div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="600">
+          <img src="images/Computer Networks Fundamentals.png" alt="Network Certificate" class="cert-img" />
+          <div class="flex items-center mb-4">
+            <i class="fas fa-server text-2xl text-red-400 mr-3"></i>
+            <h3 class="text-xl font-bold text-white">Computer Networks</h3>
+          </div>
+          <p class="text-red-400 font-medium mb-2">Online Course</p>
+          <p class="text-lg text-slate-300">
+            Studied network protocols, routing algorithms, TCP/IP, and distributed systems fundamentals.
+          </p>
+        </div>
+
+                <!-- Certificate 3 -->
+        <div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="300">
+          <img src="images/Responsive Web Design.png" alt="FCC Certificate" class="cert-img" />
+          <div class="flex items-center mb-4">
+            <i class="fas fa-globe text-2xl text-pink-400 mr-3"></i>
+            <h3 class="text-xl font-bold text-white">Responsive Web Design</h3>
+          </div>
+          <p class="text-pink-400 font-medium mb-2">FreeCodeCamp</p>
+          <p class="text-lg text-slate-300">
+            Built responsive websites using HTML and CSS following modern UI design practices.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- PROJECTS SECTION -->
+  <section id="projects" class="py-20 bg-slate-900/50">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold mb-12 text-center text-white" data-aos="fade-up">Featured Projects</h2>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        
+        <!-- Project 1 -->
+        <div class="glass-card p-8 rounded-xl" data-aos="fade-up">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-2xl font-bold text-white">AutoVision Dashboard</h3>
+            <i class="fas fa-chart-line text-3xl text-indigo-400"></i>
+          </div>
+          <p class="text-lg text-slate-400 mb-4">Power BI • Data Modeling • Visualization</p>
+          <p class="text-lg text-slate-300 mb-6">
+            Analyzed used car market data using Power BI. Built a star schema data model and created DAX measures for KPIs like average price and total cars.
+          </p>
+          <a href="https://github.com/Harshitsinha27/AutoVision-Car-Analytics-Dashboard" target="_blank" class="inline-block px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+            View Dashboard
+          </a>
+        </div>
+
+                <!-- Project 4 -->
+        <div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="300">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-2xl font-bold text-white">UIDAI Hackathon</h3>
+            <i class="fas fa-shield-alt text-3xl text-green-400"></i>
+          </div>
+          <p class="text-lg text-slate-400 mb-4">Python • Data Analysis</p>
+          <p class="text-lg text-slate-300 mb-6">
+            Developed a data-driven solution for the UIDAI Hackathon. Focused on analyzing Aadhaar-related datasets to extract useful insights.
+          </p>
+          <a href="https://github.com/Harshitsinha27/UIDAI-Biometric-Update-Demand" target="_blank" class="inline-block px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+            View Details
+          </a>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-2xl font-bold text-white">UAE Auto Market Sales</h3>
+            <i class="fas fa-chart-bar text-3xl text-purple-400"></i>
+          </div>
+          <p class="text-lg text-slate-400 mb-4">Excel • Data Analysis • Visualization</p>
+          <p class="text-lg text-slate-300 mb-6">
+            Interactive dashboard visualizing car sales trends in UAE. Highlighted top brands and regional performance using advanced Excel formulas.
+          </p>
+          <a href="https://github.com/Harshitsinha27/UAE-Auto-Market" target="_blank" class="inline-block px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+            View Project
+          </a>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="glass-card p-8 rounded-xl" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-2xl font-bold text-white">Library Book Tracker</h3>
+            <i class="fas fa-book text-3xl text-pink-400"></i>
+          </div>
+          <p class="text-lg text-slate-400 mb-4">Java • OOP • DSA</p>
+          <p class="text-lg text-slate-300 mb-6">
+            Console-based library management system using ArrayList. Features include Add, Borrow, Return, and Display Books functionality.
+          </p>
+          <a href="https://github.com/Harshitsinha27/Library-Book-Tracker" target="_blank" class="inline-block px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+            View Code
+          </a>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="py-20 bg-slate-900/50">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold mb-12 text-center text-white" data-aos="fade-up">Get In Touch</h2>
+      
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- Contact Information -->
+        <div class="glass-card p-10 rounded-2xl" data-aos="fade-right">
+          <h3 class="text-3xl font-bold text-white mb-6">Contact Information</h3>
+          <div class="space-y-6 text-lg">
+            <div class="flex items-center">
+              <i class="fas fa-phone-alt text-indigo-400 text-2xl w-10"></i>
+              <span class="text-slate-300">+91-9778035091</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-envelope text-indigo-400 text-2xl w-10"></i>
+              <span class="text-slate-300">harshitsinha2709@gmail.com</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-map-marker-alt text-indigo-400 text-2xl w-10"></i>
+              <span class="text-slate-300">Raipur, Chhattisgarh</span>
+            </div>
+          </div>
+          
+          <div class="mt-8 pt-8 border-t border-white/10">
+            <p class="text-lg text-slate-300 mb-4">Connect with me:</p>
+            <div class="flex gap-4">
+              <a href="https://www.linkedin.com/in/harshit-sinha-3027b0290/" 
+                 class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white hover:bg-indigo-700 transition-colors">
+                <i class="fab fa-linkedin-in text-xl"></i>
+              </a>
+              <a href="https://github.com/Harshitsinha27" 
+                 class="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center text-white hover:bg-slate-600 transition-colors">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form - FIXED VERSION -->
+        <div class="glass-card p-10 rounded-2xl" data-aos="fade-left">
+          <h3 class="text-3xl font-bold text-white mb-6">Send a Message</h3>
+          <form id="contactForm" method="POST" action="https://formsubmit.co/harshitsinha2709@gmail.com">
+            <!-- Formsubmit.co configuration -->
+            <input type="hidden" name="_subject" value="New Contact Form Message from Portfolio">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="box">
+            <input type="hidden" name="_next" value="https://harshitsinha27.github.io/portfolio/#contact">
+            
+            <div class="space-y-6">
+              <div>
+                <label class="block text-lg font-medium text-slate-300 mb-2">Name</label>
+                <input type="text" name="name" id="name" required
+                  class="w-full bg-slate-800/50 border border-slate-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                  placeholder="Your Name">
+              </div>
+
+              <div>
+                <label class="block text-lg font-medium text-slate-300 mb-2">Email</label>
+                <input type="email" name="email" id="email" required
+                  class="w-full bg-slate-800/50 border border-slate-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                  placeholder="your.email@example.com">
+              </div>
+
+              <div>
+                <label class="block text-lg font-medium text-slate-300 mb-2">Message</label>
+                <textarea name="message" id="message" required rows="5"
+                  class="w-full bg-slate-800/50 border border-slate-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                  placeholder="Your message here..."></textarea>
+              </div>
+
+              <button type="submit" class="submit-btn w-full px-6 py-4 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-500/30 text-lg">
+                <span class="submit-text"><i class="fas fa-paper-plane mr-2"></i> Send Message</span>
+                <span class="loading-text hidden"><i class="fas fa-spinner fa-spin mr-2"></i> Sending...</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Success Message -->
+          <div id="successMessage" class="hidden mt-6 p-6 bg-green-600/20 border border-green-500 rounded-lg text-center">
+            <i class="fas fa-check-circle text-4xl text-green-400 mb-4"></i>
+            <h4 class="text-2xl font-bold text-white mb-2">Message Sent Successfully!</h4>
+            <p class="text-lg text-slate-300">Thank you for reaching out. I'll get back to you soon!</p>
+          </div>
+
+          <!-- Error Message -->
+          <div id="errorMessage" class="hidden mt-6 p-6 bg-red-600/20 border border-red-500 rounded-lg text-center">
+            <i class="fas fa-check-circle text-4xl text-green-400 mb-4"></i>
+            <h4 class="text-2xl font-bold text-white mb-2">Message Sent Successfully!</h4>
+            <p class="text-lg text-slate-300">Thank you for reaching out. I'll get back to you soon!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 border-t border-white/10 bg-slate-900 text-center">
+    <p class="text-lg text-slate-400">
+      © 2025 Harshit Sinha. All rights reserved.
+    </p>
+    <p class="text-sm text-slate-500 mt-2">
+      Built with HTML, Tailwind CSS & AOS
+    </p>
+  </footer>
+
+  <!-- AOS Animation JS -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+  </script>
+
+  <!-- Form Submission Script - FIXED VERSION -->
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const btn = document.querySelector('.submit-btn');
+      const submitText = btn.querySelector('.submit-text');
+      const loadingText = btn.querySelector('.loading-text');
+      const successMessage = document.getElementById('successMessage');
+      const errorMessage = document.getElementById('errorMessage');
+
+      // Show loading state
+      submitText.classList.add('hidden');
+      loadingText.classList.remove('hidden');
+      btn.disabled = true;
+
+      // Hide any existing messages
+      successMessage.classList.add('hidden');
+      errorMessage.classList.add('hidden');
+
+      // Submit the form using fetch
+      fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this),
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // Formsubmit.co returns a redirect or HTML on success
+          // We'll treat any successful response as success
+          return response.text();
+        }
+        throw new Error('Network response was not ok');
+      })
+      .then(() => {
+        // Success
+        loadingText.classList.add('hidden');
+        submitText.classList.remove('hidden');
+        btn.disabled = false;
+        
+        // Show success message
+        successMessage.classList.remove('hidden');
+        
+        // Reset form
+        this.reset();
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          successMessage.classList.add('hidden');
+        }, 5000);
+      })
+      .catch(error => {
+        // Error
+        console.error('Error:', error);
+        
+        loadingText.classList.add('hidden');
+        submitText.classList.remove('hidden');
+        btn.disabled = false;
+        
+        // Show error message
+        errorMessage.classList.remove('hidden');
+        
+        // Hide error message after 5 seconds
+        setTimeout(() => {
+          errorMessage.classList.add('hidden');
+        }, 5000);
+      });
+    });
+  </script>
+</body>
+</html>
